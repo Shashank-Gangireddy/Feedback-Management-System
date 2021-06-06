@@ -63,11 +63,10 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", empName=" + empName + ", password=" + password + ", role="
-				+ role + "]";
+				+ role + ", prog=" + prog + "]";
 	}
 	
 	

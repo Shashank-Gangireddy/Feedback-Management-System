@@ -1,6 +1,7 @@
 package com.cg.fms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +19,19 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/Fms/api")
+@CrossOrigin(origins="*")
 public class CourseController {
 
 	@Autowired
 	ICourseService courseService;
 
 	@PostMapping("/Course")
-	public Course addCourse(Course cou) {
+	public Course addCourse(@RequestBody Course cou) {
 		return courseService.addCourse(cou);
 	}
 
 	@PutMapping("/CourseUp")
-	public Course updateCourse(Course cou) {
+	public Course updateCourse(@RequestBody Course cou) {
 		return courseService.updateCourse(cou);
 	}
 

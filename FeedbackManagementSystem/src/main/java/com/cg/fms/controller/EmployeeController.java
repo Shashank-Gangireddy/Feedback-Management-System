@@ -1,10 +1,13 @@
 package com.cg.fms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,15 +16,17 @@ import com.cg.fms.service.ITrainerManagementService;
 
 import java.util.*;
 
+
 @RestController
 @RequestMapping("Fms/api")
+@CrossOrigin(origins="*")
 public class EmployeeController {
 
 	@Autowired
 	ITrainerManagementService itm;
 
 	@PostMapping("/Trainer")
-	public Employee addTrainer(Employee emp) {
+	public Employee addTrainer(@RequestBody Employee emp) {
 		return itm.addTrainer(emp);
 	}
 
@@ -36,7 +41,7 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/TrUpdate")
-	public Employee updateEmployee(Employee emp) {
+	public Employee updateEmployee(@RequestBody Employee emp) {
 		return itm.updateTrainer(emp);
 	}
 
@@ -45,9 +50,10 @@ public class EmployeeController {
 		return itm.removeTrainer(id);
 	}
 	
-	@GetMapping("/SignIn")
-	public String signIn(int uid, String pw)
+	@PostMapping("/SignIn")
+	public boolean signIn(@RequestBody Employee e)
 	{
-		return itm.SignIn(uid, pw);
+		return itm.SignIn(e);
 	}
+	
 }

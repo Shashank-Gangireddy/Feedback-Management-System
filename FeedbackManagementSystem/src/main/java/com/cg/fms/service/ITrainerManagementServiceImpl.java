@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cg.fms.entities.Course;
 import com.cg.fms.entities.Employee;
@@ -69,18 +70,18 @@ public class ITrainerManagementServiceImpl implements ITrainerManagementService 
 	}
 
 	@Override
-	public String SignIn(int uid, String pw) {
+	public boolean SignIn(Employee emp) {
 		
-		String pass= itm.getPassword(uid);
-		if(pass.equals(pw))
+		String pw = emp.getPassword();
+		String pw2 = itm.getPassword(emp.getEmployeeId());
+		if(pw.equals(pw2))
 		{
-			return "Login Succesful";
+			return true;
 		}
 		else
 		{
-			return "Login failed";
+			return false;
 		}
-		
 		
 	}
 

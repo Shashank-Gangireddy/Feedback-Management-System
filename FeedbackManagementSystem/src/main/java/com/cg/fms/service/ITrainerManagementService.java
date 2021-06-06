@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ITrainerManagementService {
 	
-	public String SignIn(int uid, String pw);
+	public boolean SignIn(Employee emp);
 	
 	public Employee addTrainer(Employee emp);
 	
